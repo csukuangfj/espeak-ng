@@ -919,7 +919,7 @@ static int LookupThousands(Translator *tr, int value, int thousandplex, int thou
 	// thousands_exact:  bit 0  no hundreds,tens,or units,  bit 1  ordinal numberr
 	int found;
 	int found_value = 0;
-	char string[14];
+	char string[26];
 	char ph_of[12];
 	char ph_thousands[40];
 	char ph_buf[40];
@@ -931,7 +931,7 @@ static int LookupThousands(Translator *tr, int value, int thousandplex, int thou
 		if (thousands_exact & 1) {
 			if (thousands_exact & 2) {
 				// ordinal number
-				sprintf(string, "_%dM%do", value, thousandplex);
+				snprintf(string, sizeof(string), "_%dM%do", value, thousandplex);
 				found_value = Lookup(tr, string, ph_thousands);
 			}
 			if (!found_value && (number_control & 1)) {
@@ -1024,7 +1024,7 @@ static int LookupNum2(Translator *tr, int value, int thousandplex, const int con
 	int found_ordinal = 0;
 	int next_phtype;
 	int ord_type = 'o';
-	char string[12]; // for looking up entries in *_list
+	char string[15]; // for looking up entries in *_list
 	char ph_ordinal[20];
 	char ph_tens[50];
 	char ph_digits[50];
@@ -1682,7 +1682,7 @@ static int TranslateNumber_1(Translator *tr, char *word, char *ph_out, unsigned 
 		if (prev_thousands == 0) {
 			if ((decimal_point == 0) && (ordinal == 0)) {
 				// Look for special pronunciation for this number in isolation (LANG=kl)
-				sprintf(string, "_%dn", value);
+				sprintf(string, "_%ldn", value);
 				if (Lookup(tr, string, ph_out))
 					return 1;
 			}

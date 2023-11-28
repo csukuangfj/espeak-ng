@@ -1553,7 +1553,7 @@ ESPEAK_NG_API espeak_ng_STATUS espeak_ng_CompileDictionary(const char *dsource, 
 
 	// try with and without '.txt' extension
 	sprintf(path, "%s%s_", dsource, dict_name);
-	sprintf(fname_in, "%srules.txt", path);
+	snprintf(fname_in, sizeof(fname_in), "%srules.txt", path);
 	if ((f_in = fopen(fname_in, "r")) == NULL) {
 		sprintf(fname_in, "%srules", path);
 		if ((f_in = fopen(fname_in, "r")) == NULL) {
@@ -1562,7 +1562,7 @@ ESPEAK_NG_API espeak_ng_STATUS espeak_ng_CompileDictionary(const char *dsource, 
 		}
 	}
 
-	sprintf(fname_out, "%s%c%s_dict", path_home, PATHSEP, dict_name);
+	snprintf(fname_out, sizeof(fname_out), "%s%c%s_dict", path_home, PATHSEP, dict_name);
 	if ((f_out = fopen(fname_out, "wb+")) == NULL) {
 		int error = errno;
 		fclose(f_in);
