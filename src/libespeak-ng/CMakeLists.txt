@@ -100,9 +100,10 @@ if (HAVE_LIBPCAUDIO AND USE_LIBPCAUDIO)
   target_include_directories(espeak-ng PRIVATE ${PCAUDIO_INC})
 endif()
 
-target_link_libraries(espeak-ng PRIVATE espeak-ng-config ucd)
+target_link_libraries(espeak-ng PRIVATE espeak-ng-config)
+target_link_libraries(espeak-ng PUBLIC ucd)
 if (NOT MSVC)
-  target_link_libraries(espeak-ng PRIVATE m)
+  target_link_libraries(espeak-ng PUBLIC m -pthread)
 endif()
 target_link_libraries(espeak-ng PRIVATE espeak-include)
 
