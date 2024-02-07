@@ -103,7 +103,7 @@ endif()
 target_link_libraries(espeak-ng PRIVATE espeak-ng-config)
 target_link_libraries(espeak-ng PUBLIC ucd)
 if (NOT MSVC)
-  target_link_libraries(espeak-ng PUBLIC m -pthread)
+  target_link_libraries(espeak-ng PRIVATE m)
 endif()
 target_link_libraries(espeak-ng PRIVATE espeak-include)
 
