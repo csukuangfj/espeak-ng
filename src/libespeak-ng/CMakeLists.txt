@@ -110,5 +110,3 @@ target_link_libraries(espeak-ng PRIVATE espeak-include)
 if (MINGW)
   target_link_options(espeak-ng PRIVATE "-static-libstdc++" "-static")
 endif()
-
-install(TARGETS espeak-ng)
