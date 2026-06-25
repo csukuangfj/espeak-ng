@@ -51,6 +51,3 @@ message(STATUS "  klatt: ${USE_KLATT}")
 message(STATUS "  speech-player: ${USE_SPEECHPLAYER}")
 message(STATUS "  async: ${USE_ASYNC}")
 
-install(
-  DIRECTORY vim/ftdetect vim/syntax DESTINATION share/vim/vimfiles
-)

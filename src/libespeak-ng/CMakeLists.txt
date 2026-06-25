@@ -39,7 +39,10 @@ add_library(espeak-ng
 )
 
 target_include_directories(espeak-ng BEFORE PRIVATE $<TARGET_PROPERTY:espeak-include,INTERFACE_INCLUDE_DIRECTORIES>)
-target_link_libraries(espeak-ng PRIVATE "-Wl,-rpath,${ESPEAK_NG_RPATH_ORIGIN}")
+
+if (BUILD_SHARED_LIBS)
+  target_link_libraries(espeak-ng PRIVATE "-Wl,-rpath,${ESPEAK_NG_RPATH_ORIGIN}")
+endif()
 
 if (NOT MSVC)
   target_compile_options(espeak-ng PRIVATE
